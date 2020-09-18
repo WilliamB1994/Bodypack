@@ -1,0 +1,6 @@
+<form method="post" action="{{ path('cart_deleteOrderProduct', {'id': cart.id}) }}" onsubmit="return confirm('Êtes-vous sûre de vouloir supprimer cet article de votre panier?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_idOrderProduct" value="{{ product.id}}">
+    <input type="hidden" name="_tokenOrderProduct" value="{{ csrf_token('delete' ~ product.id) }}">
+    <button  class="btn btn-delete-form"> <i class="material-icons">remove_shopping_cart</i></button>
+</form>

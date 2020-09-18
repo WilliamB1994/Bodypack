@@ -1,0 +1,73 @@
+{{ form_start(form) }}
+
+
+<div class="form-input-container">
+
+
+    {{form_label (form.title, 'Titre du produit')}}
+    <div class="form-error">
+        {{form_errors (form.title)}}
+    </div>
+    {{form_widget (form.title)}}
+
+    {{form_label (form.description, 'Description du produit')}}
+        <div class="form-error">
+            {{form_errors (form.description)}}
+        </div>
+        {{form_widget (form.description)}}
+
+
+        {{form_label (form.ean, 'EAN du produit')}}
+        <div class="form-error">
+            {{form_errors (form.ean)}}
+        </div>
+        {{form_widget (form.ean)}}
+
+        {{form_label (form.sku, 'SKU du produit')}}
+        <div class="form-error">
+            {{form_errors (form.sku)}}
+        </div>
+        {{form_widget (form.sku)}}
+
+
+        {{form_label (form.image, 'Image du produit')}}
+        <div class="form-error">
+            {{form_errors (form.image)}}
+        </div>
+        {{form_widget (form.image)}}
+
+
+        {{form_label (form.regularPrice, 'Prix du produit')}}
+        <div class="form-error">
+            {{form_errors (form.regularPrice)}}
+        </div>
+        {{form_widget (form.regularPrice)}}
+
+
+        {{form_label (form.reducePrice, 'Prix promo')}}
+        <div class="form-error">
+            {{form_errors (form.reducePrice)}}
+        </div>
+        {{form_widget (form.reducePrice)}}
+
+
+        {{form_label (form.quantityStock, 'Stock')}}
+        <div class="form-error">
+            {{form_errors (form.quantityStock)}}
+        </div>
+        {{form_widget (form.quantityStock)}}
+
+        {{form_label (form.productCategories, 'Categorie')}}
+        <div class="form-error">
+            {{form_errors (form.productCategories)}}
+        </div>
+        {{form_widget (form.productCategories)}}
+
+</div>
+
+
+<div class="center-align">
+    <button class="btn btn-admin-form">{{ button_label|default('Enregistrer') }}</button>
+</div>
+
+{{ form_end(form) }}

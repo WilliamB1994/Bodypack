@@ -1,0 +1,154 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{product.title}}| Bodypack
+{% endblock %}
+
+{% block body %}
+
+
+
+    {% for message in app.flashes('notice') %}
+        <div class="row">
+            <div class="col s12 m6 l4 right">
+                <p class="flash-notice center-align ">{{ message }}</p>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="row container-product-presentation">
+
+        <div class="col l6 s12 center-align ">
+            {% if product.reducePrice >0 %}
+                {% set discount = ((product.reducePrice - product.regularPrice)/ product.regularPrice) *100 %}
+                <span class=" right banner-discount">
+                    {{discount|round}}
+                    %</span>
+            {% endif %}
+            <img class="cover-product-large" src="{{asset (product.image)}}" alt="{{ product.title }}">
+        </div>
+
+        <div class="col l6 s12" id="container-product-main-infos">
+
+            <h5 class="product-title">{{ product.title }}</h5>
+
+
+            {% if product.quantityStock > 0 %}
+                <div class="right">
+                    <form method="post" action="{{ path ('product_show',{id : product.id}) }}">
+                        <input type="hidden" name="productSelected" value={{product.id}}>
+                        <button type="submit" class="waves-effect waves-light btn-large btn-add-cart">
+                            <i class="material-icons left">add_shopping_cart</i>Ajouter au panier</button>
+                    </form>
+                </div>
+
+
+            {% else %}
+                <div class="right">
+                    <button class="btn-large disabled">
+                        <i class="material-icons left">add_shopping_cart</i>Ajouter au panier</button>
+                </a>
+            </div>
+
+        {% endif %}
+
+
+        {% if product.reducePrice > 0 %}
+            <p class='product-price-crossed'>
+                Prix initial :
+                {{ product.regularPrice }}€</p>
+            <p class='product-price'>
+                {{ product.reducePrice }}€
+            {% else %}
+                <p class='product-price'>{{ product.regularPrice }}€</p>
+            {% endif %}
+
+
+            {% if product.quantityStock >0 %}
+                <div class="stock-green">
+                    <i class="tiny material-icons">brightness_1</i>
+                    <span>En stock</span>
+                </div>
+
+
+            {% else %}
+                <div class="stock-red">
+                    <i class="tiny material-icons">brightness_1</i>
+                    <span>Epuisé</span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col s6 ">
+            {% if product.description %}
+                <p>{{product.description}}</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="section ">
+        <div class="row container container-title-section">
+            <h5 class="section-title center-align">Ces produits pourraient aussi vous intéresser</h5>
+        </div>
+
+        <div class="row">
+            {% for product in relatedProducts %}
+                <div class="col s12 m6 l3 center-align ">
+                    <a href="{{ path('product_show', {'id': product.id}) }}">
+                        {% if product.reducePrice >0 %}
+                            <span class=" right banner-discount">PROMO</span>
+                        {% endif %}
+                        <img class="cover-product" src="{{ asset (product.image) }}"></a>
+                    <a class="link-product" href="{{ path('product_show', {'id': product.id}) }}">
+                        <div class="container-product-info ">
+
+                            <p class='product-name'>{{ product.title }}</p>
+                                -
+                            {% if product.reducePrice %}
+                                <p class='product-price-crossed'>{{ product.regularPrice }}€</p>
+                                <p class='product-price'>{{ product.reducePrice }}€
+                                {% else %}
+                                    <p class='product-price'>{{ product.regularPrice }}€</p>
+                                {% endif %}
+
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+
+        <div class="parallax-container container-brand-promotion">
+        <h3 class="title-call-to-action center-align">Nos engagements</h3>
+        <p class="text-call-to-action ">L’équipe de Bodypack s’engage à répondre à toutes vos attentes pour vous proposer un service de qualité !</p>
+        <div class="row">
+            <div class="col s6 m4  l4 center-align">
+                <img class="icon-brand-promotion" src="{{asset ('assets/img/award.png')}}" alt="award">
+                <h4 class="title-brand-promotion">Qualité</h4>
+                <p class="text">
+                   Toutes les informations sur nos produits sont détaillés précisément et nous sommes à votre service en cas de besoin. </p>
+            </div>
+            <div class="col s6 m4 l4 center-align">
+                <img class="icon-brand-promotion" src="{{asset ('assets/img/shopping-basket.png')}}" alt="product">
+                <h4 class="title-brand-promotion">Choix</h4>
+                <p class="text">
+                    Chez Bodypack, nous attachons une grande importance à vous proposer un large choix de sacs. </p>
+            </div>
+            <div class="col s12 m4 l4 center-align">
+                <img class="icon-brand-promotion" src="{{asset ('assets/img/delivery-truck.png')}}" alt="truck">
+                <h4 class="title-brand-promotion">Livraison</h4>
+                <p class="text">
+                    Nous travaillons avec des prestataires de confiances pour vous assurer une livraison optimale de vos colis à votre domicile ! </p>
+            </div>
+
+        </div>
+
+
+        <div class="parallax"><img  width="400px" class="image-filter-grey" src="{{asset ('assets/img/valais-3562988_1920.jpg')}}"></div>
+
+
+    </div>
+    {% endblock %}
+    {% block javascripts %}{% endblock %}

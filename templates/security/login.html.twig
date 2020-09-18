@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block title %}Connexion | Bodypack
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="background-image-form  valign-wrapper">
+
+
+        <div class="row container-form-security ">
+            <div class="col s12 ">
+                <h3 class="section-title-form center-align">Connexion</h3>
+                <div class=" col s12 m6 offset-m3 ">
+
+                    {% if error %}
+
+                        <p class="center-align form-error">L'adresse mail ou le mot de passe sont incorrectes ! Veuillez réessayer!</p>
+
+                    {% endif %}
+                    <form axtion={{path ('security_login')}} method="post">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                {% if last_username %}
+
+                                    <input id="email" type="email" require name="_username" class="validate" value="{{last_username}}">
+
+                                {% else %}
+                                    <input id="email" type="email" require name="_username" class="validate">
+                                {% endif %}
+                                <label class="label-form" for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="password" type="password" require name="_password" class="validate">
+                                <label class="label-form" for="password">Mot de passe</label>
+                            </div>
+                        </div>
+                        <div class="center-align">
+                            <button type="submit" class="btn btn-admin-form">Se connecter</button>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+            <div class="center-align ">
+                <h5 style="margin-bottom: 20px;">Pas encore inscrit ?</h5>
+                <a class="button-white-form" href="{{path ('security_registration')}}">S'inscrire</a>
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock %}

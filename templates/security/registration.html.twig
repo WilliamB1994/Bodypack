@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription | Bodypack
+{% endblock %}
+
+{% block body %}
+
+    <div class="background-image-form blue valign-wrapper">
+
+        <div class="row container-form-security-registration ">
+        <div class="col s12 ">
+        
+        <h3 class="section-title-form  center-align ">Inscription</h3>
+            <div class="col s12 m8 offset-m2 ">
+                {{form_start (form)}}
+
+                {{form_label (form.email, 'Votre email')}}
+                <div class="form-error">
+                    {{form_errors (form.email)}}
+                </div>
+                {{form_widget (form.email)}}
+
+                {{form_label (form.userName, 'Votre prénom')}}
+                <div class="form-error">
+                    {{form_errors (form.userName)}}
+                </div>
+                {{form_widget (form.userName)}}
+
+                {{form_label (form.password, 'Votre mot de passe')}}
+                <div class="form-error">
+                    {{form_errors (form.password)}}
+                </div>
+                {{form_widget (form.password)}}
+
+                {{form_label (form.confirm_password, 'Confirmez votre mot de passe')}}
+                <div class="form-error">
+                    {{form_errors (form.confirm_password)}}
+                </div>
+                {{form_widget (form.confirm_password)}}
+
+
+                <div class="center-align">
+                    <button type="submit" class="btn btn-admin-form">Inscription</button>
+                </div>
+
+
+                {{form_end (form)}}
+                <div class="center-align">
+
+                    <h6 style="margin-bottom: 10px;">Déjà inscrit ?</h6>
+                    <a class="button-white-form" href="{{path ('security_login')}}">Se connecter</a>
+
+                </div>
+            </div>
+        
+        </div>
+            
+
+        </div>
+    </div>
+</div>{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+    <div class="parallax-container container-call-to-action  ">
+        <h3 class="title-call-to-action center-align">A chacun son sac ! </h3>
+        <p class="text-call-to-action ">Découvrez notre nouvelle collection</p>
+        <div class="center-align">
+            <a href="{{path ('product_index') }}" class="button-white-call-to-action">Découvrir</a>
+        </div>
+
+        <div class="parallax ">
+            <img src="{{asset ("assets/img/image-call-to-action.jpeg")}}">
+        </div>
+
+    </div>
+    <div class="section white">
+        <div class="row container">
+            <h2 class="header titleSection">Nouvelle collection 2020</h2>
+        </div>
+
+        <div class="row">
+            {% for product in products %}
+                <div class="col s12 m6 l3 center-align container-product-lsit ">
+                    <a href="{{ path('product_show', {'id': product.id}) }}">
+
+                        {% if product.reducePrice >0 %}
+                            <span class=" right banner-discount">PROMO</span>
+                        {% endif %}
+                        <img class="cover-product" src="{{asset (product.image)}}"></a>
+
+                    <a class="link-product" href="{{ path('product_show', {'id': product.id}) }}">
+                        <div class="container-product-info ">
+
+                            <p class='product-name'>{{ product.title }}</p>
+
+                                {% if product.reducePrice %}
+                                <p class='product-price-crossed'>{{ product.regularPrice }}€</p>
+                                <p class='product-price'>{{ product.reducePrice }}€
+                                {% else %}
+                                    <p class='product-price'>{{ product.regularPrice }}€</p>
+                                {% endif %}
+
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="parallax-container container-call-to-action">
+
+
+        <div class="parallax"><img width="400px" class="image-filter-grey" src="{{asset ('assets/img/image-background.jpeg')}}"></div>
+
+
+    </div>
+    <div class="images-with-text">
+        <div>
+            <img src="{{ asset ('assets/img/mini-logo Bodypack.png')}}" alt="Bodypack" >
+        </div>
+        <div>
+            <p>Bienvenue chez Bodypack, maroquinier français depuis 1954 ! Conçus pour vous accompagner dans toutes vos activités, découvrez plus de 150 modèles de sacs scolaires, 
+            sacs à dos, de sport ou de voyage qui vont suivront partout.</p>
+            <p>Notre équipe est constamment à la recherche de nouvelles idées pour créer des sacs originaux, et est toujours à votre écoute. N’hésitez pas à nous contacter !</p>
+            <p>Notre garantie Product Life vous assure un suivi de vos achats tout au long de leur vie.</p>
+            <p>Découvrez également le blog Bodypack pour retrouver tutos, récits de voyages, concours et nouveautés !</p>
+        </div>
+
+    </div>
+    <div>
+
+{% endblock %}

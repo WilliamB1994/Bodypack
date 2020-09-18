@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre commande| Bodypack
+{% endblock %}
+
+{% block body %}
+
+    <div class='link-back-container'>
+
+        <a class="link-back" href="{{ path('cart_index') }}">
+            <i class="tiny material-icons">arrow_back</i>Retourner au panier</a>
+
+    </div>
+
+    <div class="row ">
+        <div class="col s12 m12 l8  ">
+            <h4 class="section-title">Informations contact</h4>
+            {{form_start (formClient)}}
+            <div class="col s6 ">
+                {{form_label(formClient.firstName, 'Prénom')}}
+                <div class="form-error">
+                    {{form_errors (formClient.firstName)}}
+                </div>
+                {{form_widget (formClient.firstName,{'attr' :{'placeholder' : 'Ex : Noël'} })}}
+            </div>
+            <div class="col s6">
+                {{form_label(formClient.lastName, 'Nom')}}
+                <div class="form-error">
+                    {{form_errors (formClient.lastName)}}
+                </div>
+                {{form_errors (formClient.lastName)}}
+                {{form_widget (formClient.lastName,{'attr' :{'placeholder' : ' Ex : Flantier'} })}}
+            </div>
+
+            {% if app.user %}
+                <div class="col s8">
+                    {{form_label(formClient.email, 'email')}}
+                    <div class="form-error">
+                        {{form_errors (formClient.email)}}
+                    </div>
+                    {{form_widget (formClient.email,{'value' : app.user.email,'attr' :{'placeholder' : ' Ex : noelflantier@exemple.com'} })}}
+                </div>
+            {% else %}
+                <div class="col s8">
+                    {{form_label(formClient.email, 'Email')}}
+                    <div class="form-error">
+                        {{form_errors (formClient.email)}}
+                    </div>
+                    {{form_widget (formClient.email,{'label': 'Adresse mail','attr' :{'placeholder' : ' Ex : noelflantier@exemple.com'} })}}
+                </div>
+
+            {% endif %}
+
+            <div class="col s4">
+
+                {{form_label(formClient.phone, 'Téléphone')}}
+                <div class="form-error">
+                    {{form_errors (formClient.phone, {'attr': {'class': 'form-error'}})}}
+                </div>
+                {{form_widget (formClient.phone,{'label': 'Numéro de téléphone','attr' :{'placeholder' : ' Ex : 0600000000'} })}}
+            </div>
+
+            <h4 class="section-title">Addresse de livraison</h4>
+
+            <div class="col s12 ">
+                {{form_label(formClient.adress, 'Adresse')}}
+                <div class="form-error">
+                    {{form_errors (formClient.adress)}}
+                </div>
+                {{form_widget (formClient.adress,{'attr' :{'placeholder' : ' Ex : 5 rue René Coty'} })}}
+            </div>
+
+            <div class="col s12 ">
+                {{form_label(formClient.adressComplement, 'Complément d\'adresse')}}
+                <div class="form-error">
+                    {{form_errors (formClient.adressComplement)}}
+                </div>
+                {{form_widget (formClient.adressComplement,{'attr' :{'placeholder' : ' Ex : 3ème étage'} })}}
+            </div>
+            <div class="col s12 ">
+                {{form_label(formClient.city, 'Ville')}}
+                <div class="form-error">
+                    {{form_errors (formClient.city)}}
+                </div>
+                {{form_widget (formClient.city,{'attr' :{'placeholder' : ' Ex : Saint-Etienne'} })}}
+            </div>
+            
+            <div class="col s6 ">
+                {{form_label(formClient.country, 'Pays')}}
+                <div class="form-error">
+                    {{form_errors (formClient.country)}}
+                </div>
+                {{form_widget (formClient.country,{'attr' :{'placeholder' : 'Ex : France'} })}}
+            </div>
+            <div class="col s6">
+                 {{form_label(formClient.zipCode, 'Code Postal')}}
+                <div class="form-error">
+                    {{form_errors (formClient.zipCode)}}
+                </div>
+                {{form_widget (formClient.zipCode,{'attr' :{'placeholder' : ' Ex : 42000'} })}}
+            </div>
+        </div>
+
+        <div class="col s12 m12 l4  summary-cart">
+            <h5 class="section-title center-align">Résumé de la commande</h5>
+            <div class="col s8 ">
+                <p>Nombre d'articles</p>
+            </div>
+            <div class="col s4  quantity-summury-cart">
+                <p>{{cart.orderProducts | length }}</p>
+        </div>
+        <div class="col s8 ">
+            <p>Quantité totale
+            </p>
+        </div>
+        <div class="col s4  quantity-summury-cart">
+            <p>{{totalQuantityProductOrder}}</p>
+        </div>
+        <div class="col s8 ">
+            <p>Prix total des articles</p>
+        </div>
+        <div class="col s4  quantity-summury-cart">
+            <p>{{cart.totalAmount}}
+                €</p>
+        </div>
+        <div class="col s8 ">
+            <p>Prix de la livraison</p>
+        </div>
+        <div class="col s4  quantity-summury-cart">
+            <p>0 €</p>
+        </div>
+
+
+        <div class="col s8 ">
+            <p>Prix de la livraison</p>
+        </div>
+        <div class="col s4  quantity-summury-cart">
+            <p>1 €</p>
+        </div>
+
+        <div class="col s8 total-summary-cart ">
+            <p class="text-total-summary-cart">Montant total</p>
+        </div>
+        <div class="col s4  quantity-summury-cart">
+            <p class="text-total-summary-cart">{{cart.totalAmount}}
+                €</p>
+        </div>
+        <p class="detail-vat-summary-cart">Les prix sont indiqués avec la TVA comprise.</p>
+
+    </div>
+
+</div>
+<div class="col s12 ">
+    <div class="center-align">
+
+        <button type="submit" class="waves-effect waves-light btn-large btn-add-cart">
+            Paiement</button>
+
+    </div>
+</div>
+{{form_end (formClient)}}</div>{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Succès ! | Bodypack
+{% endblock %}
+
+{% block body %}
+
+    <div class="full-screen">
+
+        <div class="row">
+            <h1 class="section-title center-align" >Succès !
+            </h1>
+            <div class="col s12 m6 offset-m3 grey lighten-3 center-align" >
+                <p>Merci pour votre achat, la commande a bien été enregistré  !</p>
+                <p>Un email de confirmation vient de vous être envoyé.</p>
+                <a class="waves-effect waves-light btn-large btn-add-cart " style="margin-bottom : 20px" href="{{path ('home')}}">Retour à la page d'accueil</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

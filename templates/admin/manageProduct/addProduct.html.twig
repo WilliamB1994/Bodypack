@@ -1,0 +1,20 @@
+{% extends 'admin/base.html.twig' %}
+{% block body %}
+
+    <div class="container-fluid">
+    
+        <div class="container">
+            <div class="row">
+                <div class="col col-12"></div>
+            </div>
+            <h1 class="section-title center-align">Créer un nouveau produit</h1>
+
+            <div class="row">
+                <div class="col col-8 offset-2">
+                    {{ include('product/_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

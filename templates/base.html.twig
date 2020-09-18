@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>
+            {% block title %}Bodypack à chacun son sac !
+            {% endblock %}
+        </title>
+
+        {% block stylesheets %}
+            <link href="{{ asset ('assets/img/mini-logo Bodypack.png')}}" rel="shortcut icon">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+            <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <link href="{{ asset ('assets/css/styles.css')}}" rel="stylesheet">
+        {% endblock %}
+    </head>
+    <body>
+        <div>
+            <div class="nav-user">
+            <ul>
+                {% if app.user and not is_granted('ROLE_ADMIN') %}
+                <li>
+                    <a href="{{path ('client_index') }}">
+                        <i class="material-icons left">account_circle</i>Bonjour,
+                        {{app.user.userName}}</a>
+                </li>
+
+            {% elseif app.user and  is_granted('ROLE_ADMIN') %}
+                <li>
+
+                    <a href="{{path ("admin")}}">
+                        <i class="material-icons left">view_compact</i>Administrateur</a>
+                </li>
+
+            {% else %}
+                <li>
+                    <a href="{{path ('security_login') }}">
+                        <i class="material-icons left">account_circle</i>Espace Client</a>
+                </li>
+
+            {% endif %}
+            <li>
+                <a id="link-cart" href="{{path ("cart_index")}}">
+                    <i class="material-icons left">shopping_cart</i>Panier
+                    {% if app.session.get("cart") > 0 %}
+                        <span id="dot"></span>
+                    {% endif %}
+                </a>
+            </li>
+
+            {% if app.user %}
+                <li>
+                    <a href="{{path ("security_logout")}}">
+                        <i class="material-icons left">clear</i>Déconnexion</a>
+                </li>
+
+            {% endif %}
+        </ul>
+        </div>
+    </div>
+    <div class="main-logo"><a href="{{path ('home') }}"><img src="{{ asset ('assets/img/mini-logo Bodypack.png')}}" alt="Bodypack" ></a></div>
+    </div>
+        <nav class="main-navbar">
+            <div class="nav-wrapper">
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul id="nav-mobile" class="hide-on-med-and-down">
+                    <li>
+                        <a href="{{path ('product_index') }}">Catalogue</a>
+                    </li>
+                    <li>
+                        <a href="{{path ("product_maternelle")}}">Maternelle</a>
+                    </li>
+                    <li>
+                        <a href="{{path ("product_primaire")}}">Primaire</a>
+                    </li>
+                    <li>
+                        <a href="{{path ("product_secondaire")}}">Collège &amp; Lycée</a>
+                    </li>
+                    <li>
+                        <a href="{{path ("product_sport")}}">Sport</a>
+                    </li>
+                    <li>
+                        <a href="{{path ("product_business")}}">Business &amp; Urbain</a>
+                    </li>                    
+                    <li>
+                        <a href="{{path ("product_promo")}}">Bonne affaire</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <ul class="sidenav main-sidenav" id="mobile-demo">
+
+            <li class="active">
+                <a href="{{path ('home') }}">
+                    <span class="text-sidenav">Accueil</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{path ('product_index') }}">
+                    <span class="text-sidenav">Catalogue</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{path ("product_promo")}}">
+                    <span class="text-sidenav">Promos</span>
+                </a>
+            </li>
+
+            {% if app.user and not is_granted('ROLE_ADMIN') %}
+                <li>
+                    <a href="{{path ('client_index') }}">
+                       <span class="text-sidenav">Bonjour,{{app.user.userName}}</span>
+                    </a>
+                </li>
+
+
+            {% elseif app.user and is_granted('ROLE_ADMIN') %}
+                <li>
+                    <a href="{{path ("admin")}}">
+                        <span class="text-sidenav">Administrateur</span>
+                    </a>
+                </li>
+
+
+            {% else %}
+                <li>
+                    <a href="{{path ('security_login') }}">
+                        <span class="text-sidenav">Espace Client</span>
+                    </a>
+                </li>
+
+            {% endif %}
+            <li>
+                <a href="{{path ("cart_index")}}">
+                    <span class="text-sidenav">Panier</span>
+                </a>
+            </li>
+            {% if app.user %}
+                <li>
+                    <a href="{{path ("security_logout")}}">
+                        <span class="text-sidenav">Déconnexion</span>
+                    </a>
+                </li>
+
+            {% endif %}
+        </body>
+    </body>
+</html></ul>{% block body %}{% endblock %}<footer class="page-footer main-footer">
+<div class="row">
+    <div class="col s12 m4 l2 center-align">
+        <a href="http://facebook.com" target="_blank" rel="noopener noreferrer">
+            <img class="logoSocialMediaFooter" src="{{ asset ('assets/img/facebook-logo-in-circular-button-outlined-social-symbol.png')}}" alt="facebook-logo"></a>
+        <a href="http://instagram.com" target="_blank" rel="noopener noreferrer"><img class="logoSocialMediaFooter" src="{{asset ('assets/img/instagram.png')}}" alt="instagram-logo"></a>
+        <a href="http://twitter.com" target="_blank" rel="noopener noreferrer"><img class="logoSocialMediaFooter" src="{{asset ('assets/img/twitter-circular-button.png')}}" alt="twitter-logo"></a>
+    </div>
+    <div class="col s12 m4 l8 center-align">
+            <p>Copyright ©2020 -
+                <span class="white-text">Bodypack</span>
+            </p>
+    </div>
+    <div class="col s12 m4 l2">
+        <p>
+        <a href="{{path ('mentions') }}">
+            <span class="white-text">Mentions légales</span>
+        </a>
+        </p>
+        <p>
+        <a href="{{path ('contact') }}">
+            <span class="white-text">Contact</span>
+        </a>
+        </p>
+        <p>
+        <a href="{{path ('brand') }}">
+            <span class="white-text">La marque</span>
+        </a>
+        </p>
+        <a href="{{path ('warranty') }}">
+            <span class="white-text">La garantie</span>
+        </a>
+        </p>
+    </div>
+</div>
+</footer>
+
+{% block javascripts %}{% endblock %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.parallax');
+    var instances = M.Parallax.init(elems);
+});</script><script>
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+});</script><script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+});</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script><script src="{{asset ('assets/js/main.js')}}"></script></body></html>
